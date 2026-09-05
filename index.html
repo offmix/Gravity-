@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="dark">
     <title>Gravity</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geo:ital@0;1&display=swap" rel="stylesheet">
     <style>
       * { box-sizing: border-box; }
       html, body { min-height: 100%; margin: 0; padding: 0; }
@@ -12,7 +15,8 @@
         display: flex;
         flex-direction: column;
         color: #e8f0f4;
-        background: #050505;
+        background: linear-gradient(135deg, rgba(5, 5, 5, 0.7) 0%, rgba(8, 20, 29, 0.7) 100%), url('https://booth.pximg.net/a74477c4-e64b-49a3-bde1-d22b3a1a7a80/i/3891730/4b037f45-ed67-4316-ad51-59be447afb8f_base_resized.jpg') center/cover;
+        background-attachment: fixed;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         letter-spacing: 0.01em;
       }
@@ -35,7 +39,8 @@
         min-height: 56px;
         padding: 0 24px;
         border-bottom: 1px solid rgba(190, 235, 239, 0.15);
-        background: #070707;
+        background: rgba(7, 7, 7, 0.6);
+        backdrop-filter: blur(10px);
       }
 
       .brand {
@@ -47,6 +52,7 @@
         font-weight: 700;
         font-size: 20px;
         letter-spacing: 0.05em;
+        font-family: "Geo", sans-serif;
       }
 
       .brand-mark {
@@ -61,37 +67,6 @@
       .brand-mark svg {
         width: 100%;
         height: 100%;
-      }
-
-      .top-actions {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-      }
-
-      .icon-action {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 40px;
-        border: 1px solid transparent;
-        border-radius: 4px;
-        color: #90a6b1;
-        background: transparent;
-        cursor: pointer;
-        transition: all 0.2s ease;
-      }
-
-      .icon-action:hover {
-        border-color: rgba(190, 235, 239, 0.3);
-        color: #82e5d3;
-        background: rgba(130, 229, 211, 0.06);
-      }
-
-      .icon-action svg {
-        width: 20px;
-        height: 20px;
       }
 
       .workspace {
@@ -113,17 +88,28 @@
         align-items: center;
         justify-content: center;
         margin-bottom: 32px;
+        gap: 16px;
       }
 
       .logo-mark {
         width: 80px;
         height: 80px;
         color: #082f99;
+        flex-shrink: 0;
       }
 
       .logo-mark svg {
         width: 100%;
         height: 100%;
+      }
+
+      .logo-text {
+        font-family: "Geo", sans-serif;
+        font-size: 64px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: #e8f0f4;
+        line-height: 1;
       }
 
       .search-form {
@@ -132,17 +118,19 @@
         gap: 12px;
         margin-bottom: 20px;
         padding: 12px 16px;
-        border: 1px solid rgba(190, 235, 239, 0.2);
+        border: 1px solid rgba(190, 235, 239, 0.3);
         border-radius: 24px;
-        background: rgba(8, 20, 29, 0.5);
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        background: rgba(8, 20, 29, 0.4);
+        backdrop-filter: blur(20px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.06);
         transition: all 0.2s ease;
       }
 
       .search-form:focus-within {
-        border-color: rgba(130, 229, 211, 0.4);
-        background: rgba(8, 20, 29, 0.8);
-        box-shadow: 0 8px 32px rgba(130, 229, 211, 0.1);
+        border-color: rgba(130, 229, 211, 0.5);
+        background: rgba(8, 20, 29, 0.6);
+        backdrop-filter: blur(25px);
+        box-shadow: 0 8px 32px rgba(130, 229, 211, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
       }
 
       .search-icon {
@@ -206,10 +194,11 @@
         justify-content: space-between;
         gap: 20px;
         padding: 12px 24px;
-        border-top: 1px solid rgba(190, 235, 239, 0.1);
+        border-top: 1px solid rgba(190, 235, 239, 0.15);
         color: #607883;
         font-size: 12px;
-        background: #070707;
+        background: rgba(7, 7, 7, 0.6);
+        backdrop-filter: blur(10px);
       }
 
       .footer-section {
@@ -236,8 +225,9 @@
         padding: 12px 14px;
         border: 1px solid rgba(190, 235, 239, 0.3);
         color: #e8f0f4;
-        background: #0b1b24;
+        background: rgba(11, 27, 36, 0.8);
         border-radius: 6px;
+        backdrop-filter: blur(10px);
         font-size: 12px;
         line-height: 1.5;
         opacity: 0;
@@ -252,39 +242,13 @@
         pointer-events: auto;
       }
 
-      .loading {
-        display: none;
-        position: fixed;
-        inset: 0;
-        z-index: 100;
-        align-items: center;
-        justify-content: center;
-        background: rgba(5, 5, 5, 0.7);
-      }
-
-      .loading.active {
-        display: flex;
-      }
-
-      .spinner {
-        width: 32px;
-        height: 32px;
-        border: 3px solid rgba(130, 229, 211, 0.2);
-        border-top-color: #82e5d3;
-        border-radius: 50%;
-        animation: spin 0.8s linear infinite;
-      }
-
-      @keyframes spin {
-        to { transform: rotate(360deg); }
-      }
-
       @media (max-width: 600px) {
         .topbar { padding: 0 14px; }
         .workspace { padding: 24px 14px; }
         .center-container { max-width: 100%; }
-        .logo { margin-bottom: 24px; }
+        .logo { flex-direction: column; margin-bottom: 24px; gap: 8px; }
         .logo-mark { width: 64px; height: 64px; }
+        .logo-text { font-size: 48px; }
         .search-form { gap: 8px; padding: 10px 14px; }
         .url-input { font-size: 14px; }
         .footer { flex-direction: column; gap: 12px; }
@@ -295,7 +259,7 @@
   <body>
     <main class="shell">
       <nav class="topbar">
-        <a class="brand" href="#" onclick="resetApp(event)">
+        <a class="brand" href="/">
           <span class="brand-mark" aria-hidden="true">
             <svg viewBox="0 0 512 512" fill="currentColor">
               <path d="M501.679,371.791c-15.06,8.968-33.148,13.868-51.452,16.521c-18.393,2.624-37.306,3.028-56.093,1.935c-37.574-2.32-75.229-10.249-109.551-24.413c-9.093-3.816-17.936-8.18-26.232-13.099c12.749,2.231,25.345,3.109,38.05,3.369c21.098,0.126,42.134-2.839,62.319-8.645c40.226-11.665,77.675-34.439,104.023-67.901c13.063-16.691,23.123-36.338,27.236-57.813c4.192-21.403,1.505-44.356-7.633-64.057l-17.829,7.875c7.024,16.449,8.619,34.645,4.758,51.989c-3.808,17.363-12.624,33.704-24.288,47.769c-23.464,28.266-57.356,47.806-93.139,57.034c-5.026,1.308-10.114,2.348-15.212,3.243c3.208-2.239,6.424-4.443,9.435-6.97c17.362-14.639,28.57-36.912,30.245-59.202c1.891-22.343-3.914-44.06-13.886-62.704c-10.008-18.734-24.208-34.752-40.773-47.312c-33.264-25.373-75.632-35.747-115.84-33.498l0.735,19.476c36.597-1.003,73.348,9.514,101.129,31.966c13.833,11.118,25.354,25.023,33.086,40.548c7.75,15.481,11.531,32.754,9.658,48.925c-1.586,14.022-7.956,26.537-17.668,36.213c-0.359-3.082-0.985-6.074-1.891-8.744c-2.356-6.827-5.734-12.488-9.415-17.389c-7.168-9.255-14.442-16.897-22.604-24.396c-16.18-14.765-34.51-26.823-53.942-36.204c-38.918-18.734-82.181-27.128-124.916-24.96C77.361,183.508,34.6,196.857,0,222.803l11.477,15.732c31.616-22.416,70.561-33.525,109.408-34.457c38.891-0.95,78.14,7.839,112.418,25.516c6.97,3.602,13.671,7.668,20.166,12.005c-18.339-1.792-36.123-1.774-54.3-0.116c-37.619,3.485-76.135,15.947-106.084,41.382c-30.075,25.05-48.925,62.973-50.816,101.64l19.432,1.389c2.732-33.525,19.728-64.98,45.861-85.469c26.044-20.803,59.721-30.908,93.72-33.014c7.499-0.484,15.168-0.573,22.801-0.385c-6.773,2.284-13.412,4.963-19.647,8.385c-16.35,9.102-31.142,21.269-41.839,37.816c-10.714,16.359-15.382,37.1-12.775,56.334c2.454,19.307,10.983,36.813,22.262,51.264c22.828,29.01,56.334,47.134,91.284,53.593l3.826-19.11c-30.542-6.593-59.049-23.715-76.959-48.209c-8.896-12.139-14.898-26.178-16.171-40.253c-1.362-14.048,2.276-27.844,10.268-39.312c2.186-3.207,4.757-6.209,7.552-9.085c1.174,5.904,3.431,11.02,5.922,15.517c6.299,10.635,14.111,18.555,22.506,25.57c16.86,13.761,35.576,23.033,54.588,30.442c38.165,14.478,78.051,21.591,118.231,22.998c20.087,0.6,40.307-0.377,60.402-3.818c20.023-3.521,40.217-9.326,58.467-20.838L501.679,371.791z"/>
@@ -303,20 +267,6 @@
           </span>
           <span>Gravity</span>
         </a>
-        <div class="top-actions">
-          <button class="icon-action" id="settings-btn" type="button" aria-label="Settings">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="square" aria-hidden="true">
-              <path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"></path>
-              <circle cx="12" cy="12" r="4"></circle>
-            </svg>
-          </button>
-          <button class="icon-action" id="history-btn" type="button" aria-label="History">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="square" aria-hidden="true">
-              <circle cx="12" cy="12" r="8"></circle>
-              <path d="M12 7v5l3 2"></path>
-            </svg>
-          </button>
-        </div>
       </nav>
 
       <section class="workspace">
@@ -327,6 +277,7 @@
                 <path d="M501.679,371.791c-15.06,8.968-33.148,13.868-51.452,16.521c-18.393,2.624-37.306,3.028-56.093,1.935c-37.574-2.32-75.229-10.249-109.551-24.413c-9.093-3.816-17.936-8.18-26.232-13.099c12.749,2.231,25.345,3.109,38.05,3.369c21.098,0.126,42.134-2.839,62.319-8.645c40.226-11.665,77.675-34.439,104.023-67.901c13.063-16.691,23.123-36.338,27.236-57.813c4.192-21.403,1.505-44.356-7.633-64.057l-17.829,7.875c7.024,16.449,8.619,34.645,4.758,51.989c-3.808,17.363-12.624,33.704-24.288,47.769c-23.464,28.266-57.356,47.806-93.139,57.034c-5.026,1.308-10.114,2.348-15.212,3.243c3.208-2.239,6.424-4.443,9.435-6.97c17.362-14.639,28.57-36.912,30.245-59.202c1.891-22.343-3.914-44.06-13.886-62.704c-10.008-18.734-24.208-34.752-40.773-47.312c-33.264-25.373-75.632-35.747-115.84-33.498l0.735,19.476c36.597-1.003,73.348,9.514,101.129,31.966c13.833,11.118,25.354,25.023,33.086,40.548c7.75,15.481,11.531,32.754,9.658,48.925c-1.586,14.022-7.956,26.537-17.668,36.213c-0.359-3.082-0.985-6.074-1.891-8.744c-2.356-6.827-5.734-12.488-9.415-17.389c-7.168-9.255-14.442-16.897-22.604-24.396c-16.18-14.765-34.51-26.823-53.942-36.204c-38.918-18.734-82.181-27.128-124.916-24.96C77.361,183.508,34.6,196.857,0,222.803l11.477,15.732c31.616-22.416,70.561-33.525,109.408-34.457c38.891-0.95,78.14,7.839,112.418,25.516c6.97,3.602,13.671,7.668,20.166,12.005c-18.339-1.792-36.123-1.774-54.3-0.116c-37.619,3.485-76.135,15.947-106.084,41.382c-30.075,25.05-48.925,62.973-50.816,101.64l19.432,1.389c2.732-33.525,19.728-64.98,45.861-85.469c26.044-20.803,59.721-30.908,93.72-33.014c7.499-0.484,15.168-0.573,22.801-0.385c-6.773,2.284-13.412,4.963-19.647,8.385c-16.35,9.102-31.142,21.269-41.839,37.816c-10.714,16.359-15.382,37.1-12.775,56.334c2.454,19.307,10.983,36.813,22.262,51.264c22.828,29.01,56.334,47.134,91.284,53.593l3.826-19.11c-30.542-6.593-59.049-23.715-76.959-48.209c-8.896-12.139-14.898-26.178-16.171-40.253c-1.362-14.048,2.276-27.844,10.268-39.312c2.186-3.207,4.757-6.209,7.552-9.085c1.174,5.904,3.431,11.02,5.922,15.517c6.299,10.635,14.111,18.555,22.506,25.57c16.86,13.761,35.576,23.033,54.588,30.442c38.165,14.478,78.051,21.591,118.231,22.998c20.087,0.6,40.307-0.377,60.402-3.818c20.023-3.521,40.217-9.326,58.467-20.838L501.679,371.791z"/>
               </svg>
             </span>
+            <div class="logo-text">Galaxy</div>
           </div>
 
           <form id="search-form" autocomplete="off">
@@ -337,9 +288,8 @@
                   <path d="m16 16 5 5"></path>
                 </svg>
               </span>
-              <input class="url-input" id="url-input" type="text" inputmode="url" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" placeholder="Search the web or enter URL" aria-label="Search or enter URL" required>
-              <button class="submit-button" type="submit">
-                <span>Search</span>
+              <input class="url-input" id="url-input" type="text" inputmode="url" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" placeholder="Enter URL" aria-label="Enter URL" required>
+              <button class="submit-button" type="submit" aria-label="Navigate">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square">
                   <path d="M5 12h13"></path>
                   <path d="m13 6 6 6-6 6"></path>
@@ -352,36 +302,22 @@
 
       <footer class="footer">
         <div class="footer-section">
-          <a href="#" class="footer-link">About</a>
-          <a href="#" class="footer-link">Privacy</a>
-          <a href="#" class="footer-link">Terms</a>
+          <a href="https://github.com/offmix/Gravity-" class="footer-link">GitHub</a>
         </div>
         <div class="footer-section">
-          <span>Gravity v1.0</span>
+          <span>Gravity</span>
         </div>
       </footer>
     </main>
 
-    <div class="loading" id="loading">
-      <div class="spinner"></div>
-    </div>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
     <script>
       const form = document.getElementById('search-form');
       const input = document.getElementById('url-input');
       const toast = document.getElementById('toast');
-      const loading = document.getElementById('loading');
-      const settingsBtn = document.getElementById('settings-btn');
-      const historyBtn = document.getElementById('history-btn');
       
       let toastTimer = null;
-      let history = [];
-
-      function normalizeUrl(value) {
-        const trimmed = String(value || '').trim();
-        return /^https?:\/\//i.test(trimmed) ? trimmed : 'https://' + trimmed;
-      }
 
       function showToast(message) {
         clearTimeout(toastTimer);
@@ -392,21 +328,8 @@
         }, 3000);
       }
 
-      function setLoading(active) {
-        loading.classList.toggle('active', active);
-      }
-
-      function saveToHistory(url) {
-        history = [url, ...history.filter(item => item !== url)].slice(0, 20);
-        localStorage.setItem('gravity-history', JSON.stringify(history));
-      }
-
-      function loadHistory() {
-        try {
-          history = JSON.parse(localStorage.getItem('gravity-history') || '[]');
-        } catch {
-          history = [];
-        }
+      function encodeBase64(str) {
+        return btoa(unescape(encodeURIComponent(str)));
       }
 
       form.addEventListener('submit', (event) => {
@@ -418,25 +341,8 @@
           return;
         }
         
-        const normalizedUrl = normalizeUrl(url);
-        saveToHistory(url);
-        setLoading(true);
-        
-        setTimeout(() => {
-          window.location.href = normalizedUrl;
-        }, 100);
-      });
-
-      settingsBtn.addEventListener('click', () => {
-        showToast('Settings: Not implemented yet');
-      });
-
-      historyBtn.addEventListener('click', () => {
-        if (history.length === 0) {
-          showToast('No history');
-          return;
-        }
-        showToast(`Recent: ${history.slice(0, 3).join(', ')}`);
+        const encoded = encodeBase64(url);
+        window.location.href = '/prox?url=' + encoded;
       });
 
       input.addEventListener('keydown', (e) => {
@@ -445,13 +351,6 @@
         }
       });
 
-      function resetApp(event) {
-        event.preventDefault();
-        input.value = '';
-        input.focus();
-      }
-
-      loadHistory();
       input.focus();
     </script>
   </body>
